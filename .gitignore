@@ -1,0 +1,48 @@
+# Flask / Python-related ignores
+venv/
+__pycache__/
+*.pyc
+instance/
+*.sqlite3
+*.log
+.env
+.env.*
+
+# If using Flask-Migrate for database migrations
+migrations/
+
+# Ignore compiled Python files
+*.pyo
+*.pyd
+*.pdb
+
+# Ignore Flask cache files
+.cache/
+
+# Node.js / React-related ignores
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnp/
+.pnp.js
+*.lock
+
+# Ignore build folder for React
+build/
+dist/
+
+# Ignore IDE-specific files (optional)
+.vscode/
+.idea/
+
+# Ignore macOS system files (optional)
+.DS_Store
+
+# Ignore production environment settings (optional)
+config/settings_production.py
+
+# Ignore coverage reports
+coverage/
+*.cover
+*.py[cod]
