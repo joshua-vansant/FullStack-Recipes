@@ -11,9 +11,10 @@ def get_recipes():
 
 @app.route('/add_recipe', methods=['POST'])
 def add_recipe():
-    name = request.json['name']
-    ingredients = request.json['ingredients']
-    instructions = request.json['instructions']
+    data = request.json
+    name = data.get('name')
+    ingredients = data.get('ingredients')  # Expecting a list of dicts (JSON)
+    instructions = data['instructions']
     if not name or not ingredients or not instructions:
         return jsonify({"message": "Please provide all the required fields"})
     recipe = RecipeTable(name=name, ingredients=ingredients, instructions=instructions)
@@ -52,11 +53,15 @@ def update_recipe(recipe_id):
         return jsonify({"message": "Recipe not found"}), 404
     
     data = request.json
-    recipe.name = data['name']
-    recipe.ingredients = data['ingredients']
-    recipe.instructions = data['instructions']
-    db.session.commit()
-    
+    recipe.name = data.get('name', recipe.name)
+    recipe.ingredients = data.get('ingredients', recipe.ingredients)
+    recipe.instructions = data['instructions'], recipe.instructions
+
+    try:
+        db.session.commit()
+    except Exception as e:
+        return jsonify({"message": "Error updating recipe: {}".format(str(e))}), 500
+
     return jsonify({"message": "Recipe updated successfully"}), 200
 
 
