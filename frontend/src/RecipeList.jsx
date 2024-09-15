@@ -21,7 +21,7 @@ const RecipeList = ({ recipes, updateRecipe, updateCallback, onViewRecipe }) => 
                 },
                 body: JSON.stringify({ password }),
             };
-            const response = await fetch(`http://localhost:5000/delete_recipe/${recipeToDelete}`, options);
+            const response = await fetch(`https://fullstack-recipes-backend.onrender.com/delete_recipe/${recipeToDelete}`, options);
             if (response.status === 200) {
                 updateCallback();
             } else if (response.status === 403) {

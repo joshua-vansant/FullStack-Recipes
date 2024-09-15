@@ -17,7 +17,7 @@ function App() {
   useEffect(() => {
     const fetchBackgroundImage = async () => {
       try {
-        const response = await fetch('http://localhost:5000/pexels-image');
+        const response = await fetch('https://fullstack-recipes-backend.onrender.com/pexels-image');
         const data = await response.json();
         // console.log('Pexels API response:', data);
   
@@ -39,7 +39,7 @@ function App() {
 
 
   const fetchRecipes = async () => {
-    const response = await fetch('http://localhost:5000/recipes');
+    const response = await fetch('https://fullstack-recipes-backend.onrender.com/recipes');
     const data = await response.json();
     console.log(data.recipes);
     setRecipes(data.recipes);

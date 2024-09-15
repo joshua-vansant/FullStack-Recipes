@@ -8,7 +8,7 @@ const RecipeView = ({ recipeId, onBack }) => {
     useEffect(() => {
         const fetchRecipe = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/view/${recipeId}`);
+                const response = await fetch(`https://fullstack-recipes-backend.onrender.com/view/${recipeId}`);
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
