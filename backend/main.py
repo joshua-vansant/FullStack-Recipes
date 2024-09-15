@@ -1,10 +1,14 @@
-from flask import request, jsonify
+from flask import Flask, request, jsonify
 from config import app, db
 from models import RecipeTable
 import os
 import requests
+from flask_cors import CORS
 
+# app = Flask(__name__)
+# CORS(app)  # Allow requests from all origins for testing
 SPOONACULAR_API_KEY = os.getenv('SPOONACULAR_API_KEY')
+
 
 # Fetch recipe image from Spoonacular API
 def fetch_recipe_image(recipe_name):
@@ -79,8 +83,6 @@ def add_recipe():
 
 @app.route('/delete_recipe/<int:recipe_id>', methods=['DELETE'])
 def delete_recipe(recipe_id):
-    if request.method == 'OPTIONS':
-        return jsonify({'message': 'CORS preflight successful'}), 200
     my_pw = os.getenv('REACT_APP_RECIPE_DELETE_PASSWORD')
     data = request.json
     password = data.get('password')
@@ -98,8 +100,6 @@ def delete_recipe(recipe_id):
 
 @app.route('/update_recipe/<int:recipe_id>', methods=['PATCH', 'OPTIONS'])
 def update_recipe(recipe_id):
-    if request.method == 'OPTIONS':
-        return jsonify({'message': 'CORS preflight successful'}), 200
 
     recipe = RecipeTable.query.get(recipe_id)
     if not recipe:
@@ -130,6 +130,6 @@ def get_pexels_image():
     else:
         return jsonify({'error': 'Failed to fetch image from Pexels'}), response.status_code
 
-
 if __name__ == '__main__':
     app.run(debug=True)
+
