@@ -97,8 +97,10 @@ def delete_recipe(recipe_id):
     return jsonify({"message": "Recipe deleted successfully"}), 200
 
 
-@app.route('/update_recipe/<int:recipe_id>', methods=['PATCH'])
+@app.route('/update_recipe/<int:recipe_id>', methods=['PATCH', 'OPTIONS'])
 def update_recipe(recipe_id):
+    if request.method == 'OPTIONS':
+        return jsonify({'message': 'CORS preflight successful'}), 200
 
     recipe = RecipeTable.query.get(recipe_id)
     if not recipe:
