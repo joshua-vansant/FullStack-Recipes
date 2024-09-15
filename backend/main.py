@@ -6,6 +6,14 @@ import requests
 from flask_cors import CORS
 
 
+@app.after_request
+def after_request(response):
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    response.headers.add('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, OPTIONS')
+    return response
+
+
 SPOONACULAR_API_KEY = os.getenv('SPOONACULAR_API_KEY')
 
 

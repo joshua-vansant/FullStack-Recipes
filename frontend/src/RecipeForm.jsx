@@ -74,7 +74,7 @@ const RecipeForm = ({ existingRecipe = {}, updateCallback }) => {
       instructions: filteredInstructions
     };
 
-    const url = `http://localhost:5000/${existingRecipe.id ? `update_recipe/${existingRecipe.id}` : 'add_recipe'}`;
+    const url = `https://fullstack-recipes-backend.onrender.com/${existingRecipe.id ? `update_recipe/${existingRecipe.id}` : 'add_recipe'}`;
     const options = {
       method: updating ? 'PATCH' : 'POST',
       headers: {
