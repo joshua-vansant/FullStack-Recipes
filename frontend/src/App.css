@@ -23,3 +23,19 @@
   font-size: 28px;
   font-weight: bold;
 }
+
+.app-container {
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex; 
+  flex-direction: column; 
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
