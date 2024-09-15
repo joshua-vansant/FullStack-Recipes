@@ -5,8 +5,7 @@ import os
 import requests
 from flask_cors import CORS
 
-# app = Flask(__name__)
-# CORS(app)  # Allow requests from all origins for testing
+
 SPOONACULAR_API_KEY = os.getenv('SPOONACULAR_API_KEY')
 
 
@@ -98,7 +97,7 @@ def delete_recipe(recipe_id):
     return jsonify({"message": "Recipe deleted successfully"}), 200
 
 
-@app.route('/update_recipe/<int:recipe_id>', methods=['PATCH', 'OPTIONS'])
+@app.route('/update_recipe/<int:recipe_id>', methods=['PATCH'])
 def update_recipe(recipe_id):
 
     recipe = RecipeTable.query.get(recipe_id)
